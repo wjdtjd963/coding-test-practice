@@ -1,0 +1,19 @@
+def solution(lottos, win_nums):
+    low_result = 7
+    unknown = 0
+    
+    for num in lottos:
+        if num in win_nums:
+            low_result -= 1 # 번호가 같으면 순위 1씩 감소
+        if num == 0:
+            unknown += 1 # 알아볼 수 없는 숫자의 수
+            
+    high_result = low_result - unknown # 최고 순위
+    
+    if low_result == 7: # 6,7순위의 구분 없음.
+        low_result = 6
+    if high_result == 7:
+        high_result = 6
+        
+    answer = [high_result, low_result]
+    return answer
