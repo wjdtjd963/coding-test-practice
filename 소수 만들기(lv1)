@@ -1,0 +1,18 @@
+def is_prime(num):
+    result = True
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            result = False
+    return result    
+
+
+def solution(nums):
+    answer = 0
+    ran = len(nums)
+    for i in range(ran - 2):
+        for j in range(i + 1, ran - 1):
+            for k in range(j + 1, ran):
+                if is_prime(nums[i] + nums[j] + nums[k]):
+                    answer += 1
+    
+    return answer
