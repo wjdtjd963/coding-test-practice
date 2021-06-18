@@ -1,0 +1,56 @@
+def det_hand(leftloc, rightloc, hand, num):  
+    midlist = [0, 2, 5, 8]
+
+    if leftloc == '*' or leftloc == 0:
+        leftrow = 3
+    else:
+        leftrow = leftloc // 3
+
+    if rightloc == '#' or rightloc == 0:
+        rightrow = 3
+    else:
+        rightrow = (rightloc - 1) // 3
+
+    if num == 0:
+        numrow = 3
+    else:
+        numrow = num // 3
+
+    leftdis = abs(numrow - leftrow)
+    rightdis = abs(numrow - rightrow)
+
+    if rightloc not in midlist:
+        rightdis += 1
+    if leftloc not in midlist:
+        leftdis += 1
+
+    if leftdis > rightdis: # 오른손 거리가 더 가까우면
+        return 'R'
+    elif leftdis < rightdis:
+        return 'L'
+    else: # 거리가 같으면
+        if hand == 'left':
+            return 'L'
+        else:
+            return 'R'
+
+def solution(numbers, hand):
+    answer = ''
+    leftloc = '*'
+    rightloc = '#'
+
+    for num in numbers:
+        if num in [1, 4, 7]:
+            click = 'L'
+        elif num in [3, 6, 9]:
+            click = 'R'
+        else:
+            click = det_hand(leftloc, rightloc, hand, num)
+
+        if click == 'L': # 손의 위치 변경
+            leftloc = num
+        else:
+            rightloc = num
+
+        answer += click
+    return answer
