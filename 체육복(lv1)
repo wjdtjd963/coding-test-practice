@@ -1,0 +1,16 @@
+def solution(n, lost, reserve):
+    lost.sort()
+    los = lost.copy()
+    for i in los:
+        if i in reserve:
+            reserve.remove(i)
+            lost.remove(i)
+    los = lost.copy()            
+    for i in los:
+        if i - 1 in reserve:
+            lost.remove(i)
+        elif i + 1 in reserve:
+            lost.remove(i)
+            reserve.remove(i + 1)
+    answer = n - len(lost)
+    return answer
