@@ -1,0 +1,35 @@
+def solution(new_id):
+    banned = ['~','!','@','#','$','%','^','&','*','(',')','=','+','[','{',']','}',':','?',',','<','>','/']
+    
+    new_id = new_id.lower() # 1단계
+    
+    lst = list(new_id) # 2단계, 3단계
+    newlst = []
+    temp = 1
+    for i in lst:
+        if (i not in banned) and (temp != '.' or i != '.') :
+            newlst.append(i)
+            temp = i
+    lst = newlst
+    
+    if  len(lst) != 0 and lst[0] == '.': # 4단계
+        if len(lst) == 1:
+            lst = []
+        else:
+            lst = lst[1:] 
+    if len(lst) != 0 and lst[-1] == '.':
+        lst = lst[:-1]
+    
+    if len(lst) == 0: # 5단계
+        lst.append('a')
+    
+    if len(lst) >= 16: # 6단계
+        lst = lst[:15]
+        if lst[-1] == '.':
+            lst = lst[:-1]
+        
+    while len(lst) <= 2: # 7단계
+        lst.append(lst[len(lst) - 1])
+        
+    answer = "".join(lst)
+    return answer
