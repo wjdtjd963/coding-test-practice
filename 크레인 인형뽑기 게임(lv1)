@@ -14,7 +14,7 @@ def solution(board, moves):
             output = board[last[i - 1]][i - 1]
             last[i - 1] += 1
             bucket.append(output)
-            while len(bucket) >= 2 and bucket[len(bucket) - 1] == bucket[len(bucket) - 2]:
+            while len(bucket) >= 2 and bucket[-1] == bucket[-2]:
                 answer += 2
                 bucket.pop()
                 bucket.pop()
