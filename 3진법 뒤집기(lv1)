@@ -1,0 +1,10 @@
+def solution(n):
+    answer = 0
+    stacklst = []
+    while n > 0:
+        stacklst.append(n % 3)
+        n //= 3
+    print(stacklst)
+    for i in range(len(stacklst)):
+        answer += stacklst.pop() * (3 ** i)
+    return answer
