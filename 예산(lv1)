@@ -1,0 +1,10 @@
+def solution(d, budget):
+    i = 0
+    d.sort()
+    while budget >= 0  and i < len(d):
+        budget -= d[i]
+        i += 1
+    if budget >= 0 and i == len(d):
+        i += 1
+    answer = i - 1
+    return answer
