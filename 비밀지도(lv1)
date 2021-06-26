@@ -1,0 +1,13 @@
+def solution(n, arr1, arr2):
+    answer = []
+    for i in range(n):
+        temp = ''
+        for j in range(n):
+            if arr1[i] % 2 == arr2[i] % 2 == 0:
+                temp += ' '
+            else:
+                temp += '#'
+            arr1[i] //= 2
+            arr2[i] //= 2
+        answer.append(temp[::-1])
+    return answer
